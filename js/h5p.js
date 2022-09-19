@@ -111,24 +111,9 @@ H5P.init = function (target) {
         };
       }
       else if (previousState === null && H5PIntegration.saveFreq) {
-        // Content has been reset. Display dialog.
+        // Content has been reset.
         delete contentData.contentUserData;
-        var dialog = new H5P.Dialog('content-user-data-reset', 'Data Reset', '<p>' + H5P.t('contentChanged') + '</p><p>' + H5P.t('startingOver') + '</p><div class="h5p-dialog-ok-button" tabIndex="0" role="button">OK</div>', $container);
-        H5P.jQuery(dialog).on('dialog-opened', function (event, $dialog) {
-
-          var closeDialog = function (event) {
-            if (event.type === 'click' || event.which === 32) {
-              dialog.close();
-              H5P.deleteUserData(contentId, 'state', 0);
-            }
-          };
-
-          $dialog.find('.h5p-dialog-ok-button').click(closeDialog).keypress(closeDialog);
-          H5P.trigger(instance, 'resize');
-        }).on('dialog-closed', function () {
-          H5P.trigger(instance, 'resize');
-        });
-        dialog.open();
+        H5P.deleteUserData(contentId, 'state', 0);
       }
       // If previousState is false we don't have a previous state
     });
