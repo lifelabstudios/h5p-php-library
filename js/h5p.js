@@ -1435,7 +1435,7 @@ H5P.isObjectEqual = function (aObject, bObject, aStack, bStack) {
   }
 
   if(aObject === null || bObject === null) {
-    return false;
+    return aObject === bObject;
   }
 
   if(aObject !== aObject) {
